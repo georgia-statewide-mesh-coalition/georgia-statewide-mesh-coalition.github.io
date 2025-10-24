@@ -20,6 +20,23 @@
             height: 100%;
             z-index: -1;
         }
+        .letter {
+            display: inline-block;
+            opacity: 0;
+            transform: translate(var(--random-x), var(--random-y));
+            animation: flyIn 1.5s forwards;
+            animation-delay: calc(var(--delay) * 0.1s);
+        }
+        @keyframes flyIn {
+            to {
+                opacity: 1;
+                transform: translate(0, 0);
+            }
+        }
+        #title-container, #subtitle-container {
+            display: inline-block;
+            overflow: hidden;
+        }
     </style>
 </head>
 <body class="bg-black text-[#00ff00]">
@@ -27,13 +44,13 @@
     
     <div class="flex flex-col justify-center items-center h-screen px-4 text-center">
         <div class="max-w-2xl mx-auto">
-<h1 class="text-4xl md:text-5xl font-bold mb-6 text-[#00ff00] animate-pulse mt-4">
-Please pardon our progress!
+<h1 class="text-4xl md:text-5xl font-bold mb-6 text-[#00ff00] mt-4">
+                <span id="title-container"></span>
             </h1>
             <p class="text-xl md:text-2xl mb-10 text-[#00ff00]">
-Come back soon for exciting Growth!
+                <span id="subtitle-container"></span>
             </p>
-            <div class="border-t border-green-400 w-1/2 mx-auto my-8"></div>
+<div class="border-t border-green-400 w-1/2 mx-auto my-8"></div>
             <p class="text-xl md:text-2xl font-bold text-[#00ff00]">
                 Georgia Statewide Mesh Coalition
             </p>
@@ -45,8 +62,49 @@ Come back soon for exciting Growth!
     </div>
 
     <script>
+        // First show black screen
+        document.body.style.visibility = 'hidden';
+        setTimeout(() => {
+            document.body.style.visibility = 'visible';
+            animateText();
+        }, 500);
+
+        function animateText() {
+            const title = "Please pardon our progress!";
+            const subtitle = "Come back soon for exciting Growth!";
+            const titleContainer = document.getElementById('title-container');
+            const subtitleContainer = document.getElementById('subtitle-container');
+
+            // Split text into letters and animate
+            createLetters(title, titleContainer);
+            createLetters(subtitle, subtitleContainer);
+        }
+
+        function createLetters(text, container) {
+            container.innerHTML = '';
+            text.split('').forEach((char, i) => {
+                if (char === ' ') {
+                    container.innerHTML += ' ';
+                    return;
+                }
+                const span = document.createElement('span');
+                span.className = 'letter';
+                span.textContent = char;
+                
+                // Random starting positions
+                const randomX = (Math.random() - 0.5) * 2000;
+                const randomY = (Math.random() - 0.5) * 2000;
+                
+                span.style.setProperty('--random-x', `${randomX}px`);
+                span.style.setProperty('--random-y', `${randomY}px`);
+                span.style.setProperty('--delay', i);
+                
+                container.appendChild(span);
+            });
+        }
+
         VANTA.NET({
-            el: "#vanta-background",
+el: "#vanta-background",
             mouseControls: true,
             touchControls: true,
             gyroControls: false,
