@@ -6,20 +6,25 @@
     <title>Georgia Statewide Mesh Coalition</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.net.min.js"></script>
-<style>
-        html,
-        body {
+    <link rel="stylesheet" href="style.css">
+    <script src="script.js"></script>
+    <style>
+        html, body {
             position: relative;
             min-height: 100%;
             margin: 0;
             overflow-x: hidden;
+            background-color: #000;
+            color: #00ff00;
         }
-@media (max-width: 640px) {
+        
+        @media (max-width: 640px) {
             .letter {
                 font-size: 0.8em;
             }
         }
-.vanta-container {
+        
+        .vanta-container {
             position: absolute;
             top: 0;
             left: 0;
@@ -27,6 +32,7 @@
             height: 100%;
             z-index: -1;
         }
+        
         .letter {
             display: inline-block;
             opacity: 0;
@@ -34,156 +40,218 @@
             animation: flyIn 1.5s forwards;
             animation-delay: calc(var(--delay) * 0.1s);
         }
+        
         @keyframes flyIn {
             to {
                 opacity: 1;
                 transform: translate(0, 0);
             }
         }
+        
         #title-container, #subtitle-container {
             display: inline-block;
             overflow: hidden;
         }
+        
+        .link-hover {
+            transition: all 0.3s ease;
+        }
+        
+        .link-hover:hover {
+            text-shadow: 0 0 10px #00ff00;
+            transform: translateY(-2px);
+        }
     </style>
 </head>
-<body class="bg-black text-[#00ff00]">
-<div id="vanta-background" class="vanta-container"></div>
-<img src="https://huggingface.co/spaces/KA0SJC/mesh-whisperer-s-digital-oasis/resolve/main/images/GSMCLogo.png" alt="GSMCLogo" class="absolute top-4 left-4 h-32 w-auto z-0 opacity-100">
-<div class="absolute top-4 right-4 text-right max-w-xs md:max-w-md">
-    <h1 class="text-xl md:text-2xl font-bold mb-2 text-[#00ff00]">
-        <span id="title-container"></span>
-    </h1>
-    <p class="text-sm md:text-base text-[#00ff00]">
-        <span id="subtitle-container"></span>
-    </p>
-</div>
-<div class="flex flex-col justify-start items-center min-h-screen px-4 text-center pt-32 pb-16">
-<div class="max-w-2xl mx-auto">
-<p class="text-3xl md:text-5xl font-bold text-[#00ff00]">
+<body>
+    <div id="vanta-background" class="vanta-container"></div>
+    
+    <header class="absolute top-0 left-0 right-0 z-10">
+        <div class="container mx-auto px-4 py-4 flex justify-between items-center">
+            <img src="https://huggingface.co/spaces/KA0SJC/mesh-whisperer-s-digital-oasis/resolve/main/images/GSMCLogo.png" 
+                 alt="GSMCLogo" 
+                 class="h-20 w-auto opacity-90 hover:opacity-100 transition-opacity">
+            
+            <div class="text-right">
+                <h1 class="text-xl md:text-2xl font-bold mb-2">
+                    <span id="title-container"></span>
+                </h1>
+                <p class="text-sm md:text-base">
+                    <span id="subtitle-container"></span>
+                </p>
+            </div>
+        </div>
+    </header>
+
+    <main class="flex flex-col items-center min-h-screen px-4 pt-32 pb-16 relative z-1">
+        <div class="max-w-2xl mx-auto text-center mb-12">
+            <h1 class="text-4xl md:text-6xl font-bold mb-6">
                 Georgia Statewide Mesh Coalition
-            </p>
-<p class="text-2xl md:text-3xl text-green-100 mt-4 mb-8">
+            </h1>
+            <p class="text-2xl md:text-3xl text-green-200">
                 You're meshing something!
             </p>
-<div class="flex flex-row justify-center gap-16 max-w-4xl mx-auto">
-    <div class="w-full md:w-1/2">
-        <h3 class="text-xl md:text-2xl text-[#00ff00] mb-4 font-bold">Current Resources</h3>
-<ul class="space-y-2 text-left">
-            <li class="flex items-start">
-                <span class="text-[#00ff00] mr-2">•</span>
-                <a href="https://discord.gg/3NDTHX3zGv" class="text-sm md:text-base text-[#00ff00] hover:underline">Discord Server</a>
-            </li>
-            <li class="flex items-start">
-                <span class="text-[#00ff00] mr-2">•</span>
-                <a href="https://map.gamesh.net" class="text-sm md:text-base text-[#00ff00] hover:underline">GSMC Node Map</a>
-            </li>
-            <li class="flex items-start">
-                <span class="text-[#00ff00] mr-2">•</span>
-                <a href="https://web.gamesh.net/regions/" class="text-sm md:text-base text-[#00ff00] hover:underline">GSMC Regions Map</a>    
-            </li>
-            <li class="flex items-start">
-                <span class="text-[#00ff00] mr-2">•</span>
-                <a href="https://malla.gamesh.net" class="text-sm md:text-base text-[#00ff00] hover:underline">Network Statistics Dashboard (MALLA)</a>
-            </li>
-            <li class="flex items-start">
-                <span class="text-[#00ff00] mr-2">•</span>
-                <a href="https://client.gamesh.net" class="text-sm md:text-base text-[#00ff00] hover:underline">Web Client</a>
-            </li>
-            <li class="flex items-start">
-                <span class="text-[#00ff00] mr-2">•</span>
-                <a href="https://flasher.gamesh.net" class="text-sm md:text-base text-[#00ff00] hover:underline">Device Flasher</a>
-            </li>
-            <li class="flex items-start">
-                <span class="text-[#00ff00] mr-2">•</span>
-                <a href="https://smp17.simplex.im/g#caLQDk6pnqLMGs_FlFcrIehV2q-gd_mOjCyi3D31ALI" class="text-sm md:text-base text-[#00ff00] hover:underline">SimpleX Group Chat</a>
-            </li>
-            <li class="flex items-start">
-                <span class="text-[#00ff00] mr-2">•</span>
-                <a href="https://web.gamesh.net/calendar/ga-mesh-coalition-calendar/" class="text-sm md:text-base text-[#00ff00] hover:underline">Community Events Calendar</a>
-            </li>
-            <li class="flex items-start">
-                <span class="text-[#00ff00] mr-2">•</span>
-                <a href="https://web.gamesh.net/" class="text-sm md:text-base text-[#00ff00] hover:underline">Blog</a>
-            </li>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-12 max-w-6xl mx-auto w-full">
+            <div class="bg-black bg-opacity-70 p-6 rounded-lg border border-green-500">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">Current Resources</h2>
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="https://client.gamesh.net" class="flex items-center link-hover">
+                                <span class="w-6 text-center">•</span>
+                                <span class="ml-2">Web Client</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://web.gamesh.net/calendar/ga-mesh-coalition-calendar/" class="flex items-center link-hover">
+                                <span class="w-6 text-center">•</span>
+                                <span class="ml-2">Community Events Calendar</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://web.gamesh.net/" class="flex items-center link-hover">
+                                <span class="w-6 text-center">•</span>
+                                <span class="ml-2">Community Forum</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://discord.gg/3NDTHX3zGv" class="flex items-center link-hover">
+                                <span class="w-6 text-center">•</span>
+                                <span class="ml-2">Discord Server</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://flasher.gamesh.net" class="flex items-center link-hover">
+                                <span class="w-6 text-center">•</span>
+                                <span class="ml-2">Device Flasher</span>
+                            </a>
+                        </li>
+                    </ul>
+                    <ul class="space-y-4">
+                        <li>
+                            <a href="https://map.gamesh.net" class="flex items-center link-hover">
+                                <span class="w-6 text-center">•</span>
+                                <span class="ml-2">GSMC Node Map</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://web.gamesh.net/regions/" class="flex items-center link-hover">
+                                <span class="w-6 text-center">•</span>
+                                <span class="ml-2">GSMC Regions Map</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://malla.gamesh.net" class="flex items-center link-hover">
+                                <span class="w-6 text-center">•</span>
+                                <span class="ml-2">Network Stats Dashboard (MALLA)</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://forms.gle/UXamp7JVcFDSPQTAA" class="flex items-center link-hover">
+                                <span class="w-6 text-center">•</span>
+                                <span class="ml-2">Request MQTT Access</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a href="https://smp17.simplex.im/g#caLQDk6pnqLMGs_FlFcrIehV2q-gd_mOjCyi3D31ALI" class="flex items-center link-hover">
+                                <span class="w-6 text-center">•</span>
+                                <span class="ml-2">SimpleX Group Chat</span>
+                            </a>
+                        </li>
+                    </ul>
+</div>
+</div>
+            
+            <div class="bg-black bg-opacity-70 p-6 rounded-lg border border-green-500">
+                <h2 class="text-2xl md:text-3xl font-bold mb-6 text-center">Coming Soon</h2>
+                <ul class="space-y-4">
+                    <li class="flex items-center">
+                        <span class="w-6 text-center">•</span>
+                        <span class="ml-2">Node Installation Guides</span>
+                    </li>
+                    <li class="flex items-center">
+                        <span class="w-6 text-center">•</span>
+                        <span class="ml-2">Mesh Network Workshops</span>
+                    </li>
 </ul>
-    </div>
-    <div class="w-full md:w-1/2">
-        <h3 class="text-xl md:text-2xl text-[#00ff00] mb-4">Coming Soon</h3>
-        <ul class="space-y-2">
-            <li class="flex items-start">
-                <span class="text-[#00ff00] mr-2">•</span>
-                <span class="text-sm md:text-base text-[#00ff00]">Node Installation Guides</span>
-            </li>
-</ul>
-    </div>
-</div>
-<div class="mt-16 pb-4">
-  <img src="https://huggingface.co/spaces/KA0SJC/mesh-whisperer-s-digital-oasis/resolve/main/images/MPowered.png" alt="MPowered" class="h-16 w-auto opacity-100 hover:opacity-100 transition-opacity hovered-element" onclick="window.open('https://meshtastic.org', '_blank')">
-</div>
-</div>
-    </div>
-<script>
-        // First show black screen
-        document.body.style.visibility = 'hidden';
-        setTimeout(() => {
-            document.body.style.visibility = 'visible';
-            animateText();
-        }, 500);
+            </div>
+        </div>
+        
+        <div class="mt-16">
+            <a href="https://meshtastic.org" target="_blank" class="inline-block">
+                <img src="https://huggingface.co/spaces/KA0SJC/mesh-whisperer-s-digital-oasis/resolve/main/images/MPowered.png" 
+                     alt="MPowered" 
+                     class="h-16 w-auto opacity-90 hover:opacity-100 transition-opacity">
+            </a>
+        </div>
+    </main>
 
-        function animateText() {
-            const title = "Connecting Georgia!";
-            const subtitle = "Carry on Meshing!";
-            const titleContainer = document.getElementById('title-container');
-            const subtitleContainer = document.getElementById('subtitle-container');
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // First show black screen
+            document.body.style.visibility = 'hidden';
+            setTimeout(() => {
+                document.body.style.visibility = 'visible';
+                animateText();
+            }, 500);
 
-            // Split text into letters and animate
-            createLetters(title, titleContainer);
-            createLetters(subtitle, subtitleContainer);
-        }
+            function animateText() {
+                const title = "Connecting Georgia!";
+                const subtitle = "Carry on Meshing!";
+                const titleContainer = document.getElementById('title-container');
+                const subtitleContainer = document.getElementById('subtitle-container');
 
-        function createLetters(text, container) {
-            container.innerHTML = '';
-            text.split('').forEach((char, i) => {
-                if (char === ' ') {
-                    container.innerHTML += ' ';
-                    return;
-                }
-                const span = document.createElement('span');
-                span.className = 'letter';
-                span.textContent = char;
-                
-                // Random starting positions
-                const randomX = (Math.random() - 0.5) * 2000;
-                const randomY = (Math.random() - 0.5) * 2000;
-                
-                span.style.setProperty('--random-x', `${randomX}px`);
-                span.style.setProperty('--random-y', `${randomY}px`);
-                span.style.setProperty('--delay', i);
-                
-                container.appendChild(span);
+                // Split text into letters and animate
+                createLetters(title, titleContainer);
+                createLetters(subtitle, subtitleContainer);
+            }
+
+            function createLetters(text, container) {
+                container.innerHTML = '';
+                text.split('').forEach((char, i) => {
+                    if (char === ' ') {
+                        container.innerHTML += ' ';
+                        return;
+                    }
+                    const span = document.createElement('span');
+                    span.className = 'letter';
+                    span.textContent = char;
+                    
+                    // Random starting positions
+                    const randomX = (Math.random() - 0.5) * 2000;
+                    const randomY = (Math.random() - 0.5) * 2000;
+                    
+                    span.style.setProperty('--random-x', `${randomX}px`);
+                    span.style.setProperty('--random-y', `${randomY}px`);
+                    span.style.setProperty('--delay', i);
+                    
+                    container.appendChild(span);
+                });
+            }
+
+            VANTA.NET({
+                el: "#vanta-background",
+                mouseControls: true,
+                touchControls: true,
+                gyroControls: false,
+                minHeight: 200,
+                minWidth: 200,
+                scale: 1,
+                scaleMobile: 1,
+                color: 0x00ff00,
+                backgroundColor: 0x000000,
+                points: 18,
+                maxDistance: 18,
+                spacing: 12,
+                showDots: true,
+                dotSize: 3.5,
+                lineWidth: 1.2,
+                nodeSize: 4.5,
+                dynamicAnchors: true
             });
-        }
-
-        VANTA.NET({
-el: "#vanta-background",
-            mouseControls: true,
-            touchControls: true,
-            gyroControls: false,
-            minHeight: 200.00,
-            minWidth: 200.00,
-            scale: 1.00,
-            scaleMobile: 1.00,
-            color: 0x00ff00,
-            backgroundColor: 0x000000,
-points: 18.00,
-            maxDistance: 18.00,
-            spacing: 12.00,
-            showDots: true,
-            dotSize: 3.5,
-            lineWidth: 1.2,
-            nodeSize: 4.5,
-            dynamicAnchors: true
-        })
-</script>
+        });
+    </script>
 </body>
 </html>
